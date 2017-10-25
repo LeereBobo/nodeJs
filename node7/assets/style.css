@@ -1,0 +1,14 @@
+body {
+	background-color: skyblue;
+	color: white;
+	padding: 30px;
+}
+h1 {
+	font-size: 46px;
+	letter-spacing: 2px;
+	text-align: center;
+}
+p {
+	font-size: 16px;
+	text-align: center;
+}

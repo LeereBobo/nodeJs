@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Website</title>
+	<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+	<!-- 
+		<%= %>无逻辑，有等号
+		<%  %>有逻辑，无等号
+	 -->
+
+	<% include ../public/nav.ejs %>
+	
+	<h1>这是第<%= id %>篇博客，内容为： </h1>
+	<!-- <p>
+		<strong>标题:</strong><%= data.title %>
+		<strong>内容:</strong><%= data.body %>
+		<strong>作者:</strong><%= data.author %>
+	</p> -->
+
+	<ul>
+
+		<% data.forEach(function(sbqitem){ %>
+			<li>
+				<strong>标题:</strong><%= sbqitem.title %>
+				<strong>内容:</strong><%= sbqitem.body %>
+				<strong>作者:</strong><%= sbqitem.author %>
+			</li>
+		<% }) %>
+		
+		<!-- <% data.forEach(() => {
+
+		}) %> -->
+	</ul>
+</body>
+</html>
