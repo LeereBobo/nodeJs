@@ -1,0 +1,56 @@
+{
+  "users": [
+    {
+      "name": "Henry",
+      "phone": "1288888",
+      "enail": "11@q.com",
+      "age": "30",
+      "id": 1,
+      "companyId": 1
+    },
+    {
+      "name": "Bobo",
+      "phone": "1288888",
+      "enail": "11@q.com",
+      "age": "30",
+      "id": 2,
+      "companyId": 2
+    },
+    {
+      "name": "Bobo",
+      "phone": "110",
+      "enail": "11@q.com",
+      "age": "60",
+      "id": 3,
+      "companyId": 3
+    },
+    {
+      "name": "Guagua",
+      "phone": "1288888",
+      "enail": "11@q.com",
+      "age": "30",
+      "id": 4,
+      "companyId": 3
+    },
+    {
+      "id": 5
+    }
+  ],
+  "companies": [
+    {
+      "id": 1,
+      "name": "Apple",
+      "description": "Apple is Apple"
+    },
+    {
+      "id": 2,
+      "name": "Microsoft",
+      "description": "Microsoft is Microsoft"
+    },
+    {
+      "id": 3,
+      "name": "Google",
+      "description": "Google is Google"
+    }
+  ]
+}
