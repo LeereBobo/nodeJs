@@ -1,29 +1,30 @@
-"use strict" //严格模式
+"use strict" //严格模式:在严格模式中，指向有所变化
+
 // console.log(this);
 
-// function worthless(){
-// 	console.log(this);
-// }
-// worthless();
+/*function worthless(){
+	console.log(this);
+}
+worthless();*/
 
 // 实例化promise对象
-let myPromise = new Promise((resolve,reject) => {
+let myPromise = new Promise((resolve,reject) => {//两个形参不会同时显示
 	setTimeout(() => {
 		resolve("成功时，会显示这句话！");
 	},1000);
 
-	// setTimeout(() => {
-	// 	reject("error:网络连接失败！");
-	// },500);
+	setTimeout(() => {
+		reject("error:网络连接失败！");
+	},1500);
 });
 
-/*
-myPromise.then((data) => { //将resolve中的值传给data
+
+/*myPromise.then((data) => { //将resolve中的值传给data
 	console.log(data);
 },(err) => {
 	console.log(err);
-})
-*/
+});*/
+
 
 /*
 myPromise.then((data) => {
@@ -34,7 +35,7 @@ myPromise.then((data) => {
 })
 */
 
-// console.log(myPromise);
+// console.log(myPromise);//pending:等待中，或者进行中，表示还没有得到结果
 
 let myPromise2 = new Promise((resolve,reject) => {
 	setTimeout(() => {
@@ -58,7 +59,7 @@ Promise.all([myPromise,myPromise2])
 */
 
 // 请求数据，作用同ajax
-fetch("http://localhost:3000/users")
+/*fetch("http://localhost:3000/users")
 	.then((res) => {
 		res.json().then((data) => {
 			console.log(data);
@@ -67,5 +68,5 @@ fetch("http://localhost:3000/users")
 	})
 	.catch((err) => {
 		console.log("error:请求失败！");
-	})
+	})*/
 

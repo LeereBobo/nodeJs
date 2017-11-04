@@ -50,4 +50,4 @@ console.log(API_KEY);
 var firstName = "Huahua";
 var lastName = "Guagua";
 console.log("我的全名是："+firstName+lastName);
-console.log（`我的全名是：${firstName} ${lastName}`）;
+console.log(`我的全名是：${firstName} ${lastName}`);

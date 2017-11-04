@@ -34,7 +34,7 @@ class Person{
 	}
 
 	displayWeight(){
-		console.log(this.weight);
+		console.log(this.weight);//打印需定义函数
 	}
 }
 
@@ -42,6 +42,7 @@ let person1 = new Person("Herny",30,90);
 // person1.displayWeight();
 // console.log(person1.name);
 
+// Class 可以通过`extends`关键字实现继承，这比 ES5 的通过修改原型链实现继承，要清晰和方便很多。
 class Programmer extends Person{
 	constructor(name,age,weight,language){
 		super(name,age,weight);//相当于parent
