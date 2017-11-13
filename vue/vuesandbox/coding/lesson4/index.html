@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- 1.引入vue.js的cdn -->
+  <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!-- dom标签的容器 -->
+  <div id="vue-app">
+    <h1>计算属性</h1>
+    <button type="button" name="button" @click="a++" >buttonA</button>
+    <button type="button" name="button" @click="b++">buttonB</button>
+    <p>A—{{a}}</p>
+    <p>B—{{b}}</p>
+    <p>AGE + A ={{addToA}}</p>
+    <p>AGE + B ={{addToB}}</p>
+  </div>
+  <!-- 自己创建的js -->
+  <script type="text/javascript" src="vue.js"></script>
+</body>
+</html>

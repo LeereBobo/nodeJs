@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- 1.引入vue.js的cdn -->
+  <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!-- dom标签的容器 -->
+  <div id="vue-app">
+    <h1>动态 CSS 样式</h1>
+    <h2>实例1</h2>
+    <!--<div v-bind:class="{red:true,blue:true}"></div> class内容为对象{(类名):true(或false)} -->
+    <div v-on:click="changeColor=!changeColor" v-bind:class="{changeColor:changeColor,width:width}">
+      <span>张三</span>
+    </div>
+    <h2>实例2</h2>
+    <span v-on:click="changeColor=!changeColor" >点击变色</span>
+    <span v-on:click="width=!width" >点击变长</span>
+    <div v-on:click="changeColor=!changeColor" v-bind:class="compClass">
+      <span>张三</span>
+    </div>
+
+
+  </div>
+  <!-- 自己创建的js -->
+  <script type="text/javascript" src="vue.js"></script>
+</body>
+</html>

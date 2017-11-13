@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- 1.引入vue.js的cdn -->
+  <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!-- dom标签的容器 -->
+  <div id="vue-app">
+    <h1>双向数据绑定</h1>
+    <!-- 双向数据绑定是页面和vue.js绑定同时改变内容 -->
+    <!-- <label>姓名</label>
+    <input type="text" v-on:keyup="logName" v-bind:value="name" ref="name"> -->
+    <label>姓名</label>
+    <input type="text" v-model="name">
+    <span> {{name}} </span>
+    <label>年龄</label>
+    <input type="textarea" v-on:keyup="logAge" v-bind:value="age" ref="sbqnames">
+    <span> {{age}} </span>
+
+  </div>
+  <!-- 自己创建的js -->
+  <script type="text/javascript" src="vue.js"></script>
+</body>
+</html>

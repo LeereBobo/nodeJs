@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <link rel="stylesheet" href="index.css">
+  <!-- 1.引入vue.js的cdn -->
+  <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!-- dom标签的容器 -->
+  <div id="vue-app">
+    
+    <!-- image -->
+    <div id="bag" v-bind:class="{burst:ended}">
+      
+    </div>
+
+    <!-- bag health -->
+    <div id="bag-health">
+      <div v-bind:style="{width:health + '%'}"></div>
+
+    </div>
+
+    <!-- button -->
+    <div id="controls">
+      <button v-on:click="punch" v-show="!ended">Punch</button>
+      <button v-on:click="restart">Restart</button>
+    </div>
+  </div>
+  <!-- 自己创建的js -->
+  <script type="text/javascript" src="vue.js"></script>
+</body>
+</html>

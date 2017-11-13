@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- 1.引入vue.js的cdn -->
+  <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!-- dom标签的容器 -->
+  <div id="vue-app">
+    <h1>条件语句 v-if</h1>
+    <button type="button" name="button" v-on:click="error=!error">Toggle Error</button>
+    <button type="button" name="button" v-on:click="success=!success">Toggle Success</button>
+
+    <p v-if="error">网络链接失败:404</p>
+    <p v-else-if="success">网络链接成功:200</p>
+    <!-- v-if如果为false是在文本中没有的 -->
+    <p v-show="error">网络链接失败:404</p>
+    <p v-show="success">网络链接成功:200</p>
+    <!-- show是在文本中有的只是改变dispaly -->
+
+  </div>
+  <!-- 自己创建的js -->
+  <script type="text/javascript" src="vue.js"></script>
+</body>
+</html>

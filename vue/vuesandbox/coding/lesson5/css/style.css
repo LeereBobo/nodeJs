@@ -1,0 +1,13 @@
+span{
+  background: hotpink;
+  padding: 10px;
+  color: #FFF;
+  display: inline-block;
+  margin: 10px 0;
+}
+.changeColor span{
+  background:red;
+}
+.width span {
+  width: 300px;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- 1.引入vue.js的cdn -->
+  <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <!-- dom标签的容器 -->
+  <div id="vue-app">
+    <h1>Events事件</h1>
+    <!-- 点击事件 -->
+    <button type="button" name="button" v-on:click.once="addsbqage(1)">加一岁</button>
+    <button type="button" name="button" v-on:click="subsbqage(1)">减一岁</button>
+    <p>我的年龄是:{{sbqage}}</p>
+    <!-- dblclick 双击 -->
+    <button type="button" name="button" v-on:dblclick="addsbqage(10)">加十岁</button>
+    <button type="button" name="button" v-on:dblclick="subsbqage(10)">减十岁</button>
+    <!-- 鼠标事件 -->
+    <div class="" id="canvas" @mousemove=moveXY>
+      {{x}},{{y}}
+      <!-- 事件修饰符 .stop -->
+      <span @mousemove.stop="stopPropagation">阻止冒泡事件</span>
+    </div>
+    <!-- once 见16行 -->
+    <!-- prevent -->
+    <!-- 这里如果不阻止默认事件的话 弹窗结束后会跳网页 -->
+    <a @click.prevent="alert" href="http://www.4399.com">阻止默认事件</a>
+    <!-- 键盘事件 -->
+    <label>姓名</label>
+    <input type="text" v-on:keyup="logName" value="">
+    <!-- 证明在调用函数 -->
+    <label>年龄</label>
+    <input type="text" v-on:keyup.alt.enter="logAge" value="">
+  </div>
+  <!-- 自己创建的js -->
+  <script type="text/javascript" src="vue.js"></script>
+</body>
+</html>

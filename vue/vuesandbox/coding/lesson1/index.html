@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- 1.引入vue.js的cdn -->
+  <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<!-- dom标签的容器 -->
+  <div id="vue-app">
+    <h1>获取vue.js中的内容</h1>
+    <div> hello {{sbqname}}</div>
+      <!-- {{sbqname}}{{}}模板语法 只能拿到字符串  -->
+    <p>{{sbqjob}}</p>
+    <p>{{sbqgreet('afternoon')}}</p><!-- 调用函数要写方法 -->
+
+    <!-- 属性绑定 -->
+    <a v-bind:href="sbqwebsite">web开发</a><!-- v-bind 指令-->
+    <p v-html="sbqsiteTag"></p>
+    <input type="text" name="" v-bind:value="sbqname" :placeholder="sbqname">
+    <p></p>
+  </div>
+  <!-- 自己创建的js -->
+  <script type="text/javascript" src="vue.js"></script>
+</body>
+</html>
