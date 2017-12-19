@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>控制器</title>
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+	<div ng-controller="myController">
+		{{name}}
+		{{testFun()}}
+	</div>
+</body>
+<script>
+	// angular.module(name,array)创建一个模块
+	var app = angular.module("myApp",[]);
+
+	// 推断式注入:代码不能进行压缩混淆，否则参数名将变得无意义
+	/*app.controller("myController",function($scope){
+		$scope.name="啦啦";
+		$scope.testFun = function(){
+			return "Hello";
+		}
+	})*/
+
+	// 内联式注入:推荐使用
+	app.controller("myController",["$scope",function($scope){
+		// 控制器创建完成
+		$scope.name="呼呼";
+		$scope.testFun = function(){
+			return "Hello";
+		}
+	}])
+
+	/*
+		1.控制器：属性作用域与视图之间的桥梁
+		2.两种注入方式的区别在于代码被压缩混淆后，Angular能否通过参数名找到对应的服务
+		3.精简控制器，独立视图相关业务逻辑封装在独立容器中
+
+
+
+	*/
+</script>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>内置指令</title>
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<style>
+		.box{
+			width: 100px;
+			height: 100px;
+			background: blue;
+		}
+		.box1{
+			border: 2px solid black;
+		}
+		.box2{
+			border-radius: 50%;
+		}
+		.box3{
+			background: pink;
+		}
+	</style>
+</head>
+<body ng-app="" 
+	  ng-init="arr=['a','b','c']; obj={name:'huahua',sex:'male'};
+	          arrObj=[{name:'Jack',age:30},{name:'Rose',age:20}];
+	          arr2=['a','b','c','b'];
+	          c1='box1';
+	          bol=true;
+	          isC1=true;
+	          isC2=true;
+	          isC3=false">
+	
+	<!-- ng-repeat:遍历 -->
+	<ul>
+		<li ng-repeat="a in arr">{{a}}</li>
+	</ul>
+	<ul>
+		<li ng-repeat="(key,value) in obj">{{key}}--{{value}}</li>
+	</ul>
+	<h1 ng-repeat="person in arrObj">{{person.name}}--{{person.age}}</h1>
+	<h1 ng-repeat="x in arr">{{x}}--{{$index}}--{{$first}}--{{$last}}</h1>
+
+	<!-- angular遍历数组时不识别重复元素，会抛出异常
+		 track by $index:指定下标为跟踪依据 -->
+	<h1 ng-repeat="t in arr2 track by $index">{{t}}</h1>
+	
+	<!-- ng-style -->
+	<div ng-init="styleObj={backgroundColor:'red',width:'100px',height:'100px'}">
+		<div ng-style="styleObj"></div>
+	</div>
+
+	<!-- ng-class -->
+	<div class="box" ng-class="c1">
+		
+	</div>
+	<div class="box" ng-class="{true:'box2',false:'box3'}[bol]">
+		
+	</div>
+	<div class="box" ng-class="{'box1':isC1,'box2':isC2,'box3':isC3}"></div>
+
+</body>
+</html>

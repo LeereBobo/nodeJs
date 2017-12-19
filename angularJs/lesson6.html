@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>常用的过滤器2</title>
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-controller="myController">
+	
+	<!-- orderBy:通过表达式对指定的数组进行排序 -->
+	<ul>
+		<li ng-repeat="item in items">
+			{{item.name}}--{{item.price}}
+		</li>
+	</ul>
+
+	<ul>
+		<!-- 第一个参数为排列依据，默认升序 -->
+		<li ng-repeat="item in items | orderBy:'price'">
+			{{item.name}}--{{item.price}}
+		</li>
+	</ul>
+
+	<ul>
+		<!-- 第二个参数为是否反转排列顺序，true为反转 -->
+		<li ng-repeat="item in items | orderBy:'price':true">
+			{{item.name}}--{{item.price}}
+		</li>
+	</ul>
+
+	<ul>
+		<li ng-repeat="item in items | orderBy:orderKey:bol">
+			{{item.name}}--{{item.price}}
+		</li>
+	</ul>
+
+
+
+	<!-- limitTo:根据传入的参数生成一个新的数组或字符串(按序截取)，
+				负值为倒序截取 -->
+	<ul>
+		<li ng-repeat="item in items | limitTo:1">
+			{{item.name}}--{{item.price}}
+		</li>
+	</ul>
+	{{ "Hello" | limitTo:2 }}
+	{{ "Hello" | limitTo:-2 }}
+
+
+	<!-- filter:按参数要求快速检索，并生成一个新数组返回 -->
+	<ul>
+		<li ng-repeat="item in items | filter:filterKey">
+			{{item.name}}--{{item.price}}
+		</li>
+	</ul>
+
+</body>
+<script>
+	var app = angular.module("myApp",[]);
+	app.controller("myController",["$scope",function($scope){
+		
+		$scope.filterKey = "ip";
+
+		$scope.orderKey = "name";
+		$scope.bol = true;
+		$scope.items = [{
+			name:"iphone",
+			price:7999
+		},{
+			name:"sansung",
+			price:5899
+		},{
+			name:"huawei",
+			price:4584
+		}]
+	}])
+</script>
+</html>
