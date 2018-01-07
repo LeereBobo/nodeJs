@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令的作用域：可写通用性强的组件</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+
+    <div ng-controller="myController">
+        <h1>父级消息pmsg:{{pmsg}}</h1>
+        父级: <input type="text" ng-model="count">
+        <my-directive
+                parent-msg="lala"
+                myname="花花"
+                pmsg2="{{pmsg}}"
+                pmsg3="count"
+                p-fun="fun(msg)"
+        ></my-directive>
+    </div>
+</body>
+<script>
+    //当一个新的指令被编译链接后，angular会默认创建一个指令作用域并原型式继承父级作用域
+    var app = angular.module("myApp",[]);
+    app.controller("myController",["$scope",function($scope){
+        $scope.pmsg = "父消息";
+        $scope.count = 0;
+        $scope.fun = function(val){
+            console.log(val + "被触发");
+        }
+    }])
+
+    app.directive("myDirective",function(){
+        return {
+            scope : {
+                parentMsg : "@",// @:单向数据绑定
+//                myname : "@",
+                name:"@myname",
+                pmsg2 : "@",
+                pmsg3 : "=", // =:双向绑定,子级可修改父级
+                pFun : "&" //将父级的方法传递给子级，供子级调用，子级通过方法向父级传递数据
+            },
+            //对象时，创建隔离作用域，不继承于父级
+            //false:可访问并修改父级的属性
+            //true:形成新的作用域，可访问父级，但不可修改
+
+            template : `
+                <div>
+                    <h1>自定义指令</h1>
+                    <h2>继承自父级的作用域parentMsg:{{parentMsg}}</h2>
+                    <input type="text" ng-model="parentMsg">
+                    <!--<h2>{{myname}}</h2>-->
+                    <h2>{{name}}</h2>
+                    <h2>{{pmsg2}}</h2>
+
+                    <hr>
+
+                    <h2>{{pmsg3}}</h2>
+                    <input type="text" ng-model="pmsg3">
+                    <button ng-click="pFun({msg:parentMsg})">点击</button>
+                </div>
+            `
+        }
+    })
+
+</script>
+</html>

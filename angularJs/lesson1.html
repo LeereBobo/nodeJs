@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>内置指令</title>
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-app="">
+	<!-- {{5*4}}
+	{{"值"+5*5}}
+	{{5>4 ? "true":"false"}} -->
+	
+	<!-- ng-init -->
+	<div ng-init="name='花花'; age=30; arr=['a','b','c']; isShow=false">
+		{{name}}
+		{{age}}
+		{{arr}}
+
+		<!-- ng-bind:页面刷新时不会出现{{}} -->
+		<h1 ng-bind="name"></h1>
+		<h1>{{name}}</h1>
+		
+
+		<!-- 双向数据绑定 ng-model -->
+		
+		<input type="text" ng-model="greeting.text">
+		<p>{{greeting.text}}</p>
+			
+		<select ng-model="age">
+			<option value="30">30岁</option>
+			<option value="40">40岁</option>
+		</select>
+		<h1>{{age}}</h1>
+		
+		<input type="checkbox" ng-model="isShow">{{isShow}}
+		
+		<!-- ng-show && ng-if	 -->
+		<h1 ng-show="isShow">你能看到我吗</h1>
+		<h2 ng-if="isShow">这次能看到我</h2>
+
+		<!-- ng-click -->
+		<button ng-click="isShow=!isShow">点击</button>
+		<br>
+		<br>
+
+		<!-- ng-switch:条件指令,根据不同条件进行数据展示,类似于switch...case -->
+		<select ng-model="selectItem">
+			<option value="java">Java</option>
+			<option value="php">Php</option>
+		</select>
+		{{selectItem}}
+		<div ng-switch="selectItem">
+			<h1 ng-switch-when="java">选择了Java</h1>
+			<h1 ng-switch-when="PHP">选择了PHP</h1>
+			<h1 ng-switch-default>什么也没选</h1>
+		</div>
+	</div>
+
+
+	
+
+
+
+
+
+	<!-- 
+		四大特性：
+		1.mvc:Model Controller View
+		2.模块化 Module
+		3.指令系统
+		4.双向数据绑定
+
+		ng-app:声明了angularJs应用的所有者
+		ng-init:用来设置内部作用域的初始状态
+
+		ng-show为false时，是在元素上添加display:none样式
+		ng-if为false时，元素将从DOM树中移除，变为true将重新渲染
+
+	 -->
+</body>
+</html>
