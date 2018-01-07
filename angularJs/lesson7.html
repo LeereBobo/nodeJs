@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义过滤器</title>
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-controller="myController">
+	{{ "Hello" | myFilter }}
+	
+	<ul>
+		<li ng-repeat="x in arr | arrFilter | limitTo:2">
+			{{x}}
+		</li>
+	</ul>
+	
+
+</body>
+<script>
+	var app = angular.module("myApp",[]);
+	
+	app.controller("myController",["$scope",function($scope){
+		$scope.arr = [1,2,3,4,5]; 
+	}])
+
+	// 创建过滤器
+	app.filter("myFilter",function(){
+		return function(val){
+			console.log(val);
+			return val.toUpperCase();//自定义过滤器必须有返回值
+
+		}
+	})
+
+	app.filter("arrFilter",function(){
+		return function(val){
+			console.log(val);
+			return val.map(Math.pow);//Math.pow:幂
+		}
+	})
+
+</script>
+</html>

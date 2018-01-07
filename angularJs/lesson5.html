@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>常用的过滤器</title>
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-controller="myController">
+	
+	<!-- currency:货币格式过滤器 -->
+	<h3>{{price}}</h3>
+	<h3>{{ price | currency }}</h3>
+	<h3>{{ price | currency:"￥" }}</h3>
+	<h3>{{ price | currency:"人民币" }}</h3>
+	<hr>
+	
+	<!-- date:时间格式过滤器 -->
+	<!-- yyyy,MM,d,dd,EEEE,HH,hh,mm,ss,SSS,a -->
+	<h3>{{time}}</h3>
+	<h3>{{ time | date }}</h3>
+	<h3>{{ time | date:"yyyy"}}</h3>
+	<h3>{{ time | date:"MM" }}</h3>
+	<h3>{{ time | date:"yyyy-MM-dd HH:mm:ss" }}</h3>
+	<hr>
+
+	<!-- number:将数字格式化成文本 -->
+	<h3>{{count}}</h3>
+	<h3>{{ count | number }}</h3>  
+	<h3>{{ 1.23456 | number:2 }}</h3><!-- 保留两位小数 -->
+	<hr>
+
+	<!-- uppercase,lowercase:将字符串进行大小写转化 -->
+	<h3>{{ "Hello" | uppercase}}</h3>
+	<h3>{{ "Hello" | lowercase}}</h3>
+
+
+</body>
+<script>
+	var app = angular.module("myApp",[]);
+	app.controller("myController",["$scope",function($scope){
+		$scope.price = 4999;
+		$scope.time = Date.now();
+		$scope.count = 1234567890;
+	}])
+</script>
+</html>
