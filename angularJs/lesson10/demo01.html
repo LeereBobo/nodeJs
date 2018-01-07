@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令-生命周期</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+    <!--
+        生命周期的两个阶段：
+            1.编译阶段：AngularJS遍历HTML文档
+                       处理页面声明指令
+                       返回模板函数(返回前修改DOM,还未数据绑定，减少性能花销)
+                       通过编译函数访问DOM(此时未被渲染)
+
+            2.链接阶段：编译完成即进入链接阶段，在此阶段数据与DOM进行绑定
+    -->
+
+    <my-directive diy="huahua"></my-directive>
+
+</body>
+<script>
+    var app = angular.module("myApp",[]);
+    app.directive("myDirective",function(){
+        return {
+            template : `
+                <div>
+                    <h1>自定义指令{{name}}</h1>
+                </div>
+
+            `,
+
+            //link:作用域与DOM进行链接，对已编译DOM进行事件监听等操作
+            //scope:作用域
+            link: function(scope,ele,attrs){
+                console.log(ele,attrs);
+
+                //Angular自带了轻量级的jQuery-->jqLite
+                ele.children().css("background","red");
+                scope.name = "guagua";
+            }
+        }
+    })
+
+</script>
+</html>
