@@ -1,0 +1,94 @@
+<h1>Hello {{name}}!</h1>
+
+<ul>
+	<li>年龄: {{age}}</li>
+	<li>邮箱: {{email}}</li>
+	<li>地址: 
+		{{address.city}} 
+		{{address.state}}
+		{{address.street}}
+	</li>
+</ul>
+
+<!-- 遍历 {{hobbies}} -->
+<ul>
+	<li *ngFor="let hobby of hobbies; let i = 'index'">
+		{{i+1}}. {{hobby}}
+
+		<button (click)="deleteHobby(i)">&times;</button>
+	</li>
+</ul>
+
+<!-- 事件 -->
+<button (click)="onClick('DaJie')">Click Me</button>
+
+
+<!-- form表单 -->
+<form (submit)="addHobby(hobby.value)">
+	<div>
+		<label>爱好</label>
+		<input #hobby type="text">
+	</div>
+</form>
+
+<!-- 分支if -->
+<button (click)="isEdit = !isEdit">编辑</button>
+
+<!-- 编辑表单 -->
+<div *ngIf="isEdit">
+	<h1>编辑用户信息</h1>
+	<form>
+		<div>
+			<label>姓名</label>
+			<input type="text" 
+				   [(ngModel)]="name"
+				   name="name" 
+			>
+		</div>
+		<div>
+			<label>年龄</label>
+			<input type="text" 
+				   [(ngModel)]="age"
+				   name="age" 
+			>
+		</div>
+		<div>
+			<label>邮箱</label>
+			<input type="text" 
+				   [(ngModel)]="email"
+				   name="email" 
+			>
+		</div>
+		<div>
+			<label>城市</label>
+			<input type="text" 
+				   [(ngModel)]="address.city"
+				   name="city" 
+			>
+		</div>
+		<div>
+			<label>市区</label>
+			<input type="text" 
+				   [(ngModel)]="address.state"
+				   name="state" 
+			>
+		</div>
+		<div>
+			<label>街道</label>
+			<input type="text" 
+				   [(ngModel)]="address.street"
+				   name="street" 
+			>
+		</div>
+	</form>
+</div>
+
+
+
+
+
+
+
+
+
+
