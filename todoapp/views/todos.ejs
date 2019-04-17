@@ -61,19 +61,20 @@
 				}
 			});
 		});
-
+		
 		$(".remove").on("click",function(){
 			var item = $(this).parent().parent();
-			item = $.trim(item.text());
-			// console.log(item);
+			itemText = $.trim(item.text());
+			item.remove();
+			console.log(itemText);
 			$.ajax({
 				type:"DELETE",
-				url:"/todo/"+item,
+				url:"/todo/"+itemText,
 				success:function(data){
 					location.reload();
 				}
 			})
-		})
+		});
 	});
 
 
