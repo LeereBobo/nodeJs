@@ -33,7 +33,7 @@ module.exports = function(app){
           		data.splice(i,1);
           	}
           }
-
-
+          res.end();//浏览器未得到响应会报错
+          
      });
 }
