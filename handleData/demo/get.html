@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	查询：<button id="getBtn">get</button>
+
+	<br>
+	<br>
+	
+	添加：<button id="postBtn">post</button>
+
+	<br>
+	<br>
+
+	put修改：<button id="putBtn">put</button>
+	<br>
+	patch修改：<button id="patchBtn">patch</button>
+
+	<br>
+	<br>
+	
+	单条删除：<button id="delBtn">deleteOne</button>
+	<br>
+	批量删除：<button id="delAllBtn">deleteAll</button>
+
+
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+<script>
+	//GET
+	$("#getBtn").click(function(){
+		$.ajax({
+			type:'get',
+			url:'http://localhost:3000/users',
+			success:function(data){
+				console.log(data);
+			},
+			error:function(){
+				console.log(error);
+			}
+		})
+	});
+
+	
+	
+	//POST
+	$("#postBtn").click(function(){
+		$.ajax({
+			type:'post',
+			url:'http://localhost:3000/users',
+			data:{
+				"name": "meimei",
+				"phone": "000000",
+				"email": "00@q.com",
+				"age": "20",
+				"companyId": 1
+			},
+			success:function(data){
+				console.log("post successfully!");
+			},
+			error:function(){
+				alert("post error!");
+			}
+			
+		});
+	});
+
+
+	
+	//PUT || PATCH
+	
+	//1.put：全局更新--不能更改该条信息的id值
+	/*$('#putBtn').click(function(){
+		$.ajax({
+			type:'put',
+			url:'http://localhost:3000/users/3',
+			data:{
+				"name": "littlePig",
+      			"phone": "520",
+      			"email": "520@q.com",
+      			"age": "1",
+      			"companyId": "1",
+      			"id": 10
+			},
+			success:function(data){
+				console.log("put success!");
+			},
+			error:function(){
+				alert("put error!");
+			}
+		});
+	});*/
+
+	//put方法--局部更新
+	$('#putBtn').click(function(){
+		$.ajax({
+			type:'put',
+			url:'http://localhost:3000/users/4',
+			data:{
+				"name": "put"
+			},
+			success:function(data){
+				console.log("put success!");
+			},
+			error:function(){
+				alert("put error!");
+			}
+		});
+	});
+	
+
+	//2.patch
+	$('#patchBtn').click(function(){
+		$.ajax({
+			type:'patch',
+			url:'http://localhost:3000/users/5',
+			data:{
+				"name": "patch"
+			},
+			success:function(data){
+				console.log("patch success!");
+			},
+			error:function(){
+				alert("patch error!");
+			}
+		});
+	});
+	
+	
+	
+
+	
+	//DELETE
+	
+	// 一.根据id删除单条指定信息(id为10的用户)：
+
+	$("#delBtn").click(function(){
+		$.ajax({
+			type:'delete',
+			url:'http://localhost:3000/users/10',
+			success:function(data){
+				console.log("delete successfully!");
+			},
+			error:function(){
+				alert("delete error!")
+			}
+		});
+	});
+
+	// 二.根据既定条件删除多条指定信息
+	
+	$("#delAllBtn").click(function(){
+		// 1.通过get获取指定数据对应的id，并将其推入到空数组idList中
+		var idList = [];
+		$.ajax({
+			type:'get', 
+			url:'http://localhost:3000/companies/1/users',
+			success:function(data){
+				$.each(data,function(i,val){
+					//console.log(i+`......`+val.id);
+					idList.push(val.id);
+				});
+
+				//回调函数解决ajax异步时外部获取数据问题
+				eachData(idList,deleteAll);
+			},
+			error:function(){
+				console.log(error);
+			}
+
+		});
+
+		// 2.遍历存储id的数组，删除对应数据
+		function eachData(idArr,fn){
+			$.each(idArr,function(j){
+				fn(idArr[j]);
+			});
+		};
+		
+		// 3.ajax delete方法封装
+		function deleteAll(id){
+			$.ajax({
+				type:'delete',
+				url:'http://localhost:3000/users/'+id,
+				success:function(){
+					console.log("delete successfully!");
+				},
+				error:function(){
+					alert("delete error!")
+				}
+			});
+		};
+	});
+	
+	
+</script>
+</html>
+
+
