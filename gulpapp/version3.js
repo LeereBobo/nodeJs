@@ -1,3 +1,5 @@
+// 这是gulpfile.js文件，是基于gulp3.0的方法实例
+
 // 文件名不可更改
 
 const gulp = require("gulp");
