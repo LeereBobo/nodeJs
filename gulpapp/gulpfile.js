@@ -1,94 +1,85 @@
-// 文件名不可更改
+// 这是基于gulp4.0的方法实例
 
-const gulp = require("gulp");
-const gulpCopy = require("gulp-copy");
-const minImage = require("gulp-imagemin");
-const uglify = require("gulp-uglify");
-const sass = require("gulp-sass");
-const webserver = require("gulp-webserver");
+const gulp = require('gulp');
+const minImage = require('gulp-imagemin');
+const uglify = require('gulp-uglify');
+const sass = require('gulp-sass');
+const webserver = require('gulp-webserver');
 
+// 1.定义默认任务，终端运行gulp
+gulp.task('default',()=>{
+	console.log("hahhaha");
+});
 
-/*
-	--常用方法--
-	gulp.task  --定义任务
-	gulp.src   --输入文件路径
-	gulp.dest  --输出文件路径
-	gulp.watch --监听文件变化
+// 2.定义具体任务，终端运行gulp taskName
+gulp.task("message",async()=>{
+	await console.log("执行具体任务需要在终端运行 gulp message(任务名)");
+});
 
+// 3.定义拷贝任务
+gulp.task("copyHtml",async()=>{
+	await gulp.src('src/*.html')
+	.pipe(gulp.dest('dist'));
 	
-	--node方法--
-	pipe       --管道
-*/
-
-
-
-
-// 定义具体任务
-gulp.task("message",()=>{
-	console.log("执行具体任务需要在终端运行 gulp message(任务名)");
 });
 
-// 定义拷贝任务
-gulp.task("copyHtml",()=>{
-	// 找到需要拷贝文件的路径
-	gulp.src('src/*.html')
-		.pipe(gulp.dest('dist'));//*为所有文件
-
-});
-
-// 定义压缩图片任务
+// 4.定义图片压缩任务
 gulp.task("imageMin",()=>{
-	gulp.src("src/images/*")
+	return new Promise((resolve,reject)=>{
+		gulp.src('src/images/*')
 		.pipe(minImage())
-		.pipe(gulp.dest("dist/images"));
+		.pipe(gulp.dest('dist/images'));
+		resolve();
+	});
 });
 
-// 定义压缩JS代码任务
-// 1.下载模块 -- gulp-uglify
-// 2.引入模块 -- require
-// 3.定义任务 -- task
-// 4.在src下创建一个js文件夹，并创建一个js文件，随便写一个函数
-// 5.实现任务
-gulp.task("myUglify",()=>{
+// 5.定义压缩js代码任务
+gulp.task("myUglify",(done)=>{
 	gulp.src("src/src.js")
 	.pipe(uglify())
 	.pipe(gulp.dest("dist"));
-})
-
-// 定义sass转css任务
-gulp.task("sass",()=>{
-	gulp.src("src/sass/*.scss")
-		.pipe(sass())
-		.pipe(gulp.dest("dist/css"))
+	done();
 });
 
-// 定义默认任务
-gulp.task('default',["message","copyHtml","imageMin","myUglify","sass"]);//gulp 同时执行
+// 6.定义sass转css任务
+gulp.task("sass",async()=>{
+	await gulp.src("src/sass/style.scss")
+	.pipe(sass())
+	.pipe(gulp.dest("dist/css"));
+});
 
-// 监听任务:改变src中的文件，dist中的同一文件也会做出相应改变
-gulp.task("watch",function(){
-	gulp.watch("src/*.js",["myUglify"]);
-	gulp.watch("src/images/*",["imageMin"]);
-	gulp.watch("src/sass/*.scss",["sass"]);
-	gulp.watch("src/*.html",["copyHtml"]);
-})
+// 7.定义默认任务，gulp命令直接运行series中的多个任务
+gulp.task('default',gulp.series('copyHtml','message','imageMin','myUglify','sass',function(done){
+	console.log("按照顺序执行");
+	done();
+}));
 
-// webserver 实时监听页面内容的改变，保存即执行
+// 8.监听任务
+// gulp4.0  方法一
+gulp.task("watch",()=>{
+	gulp.watch("src/*.js",gulp.series('myUglify'));
+	gulp.watch("src/images/*",gulp.series('imageMin'));
+	gulp.watch("src/sass/*.scss",gulp.series('sass'));
+	gulp.watch("src/*html",gulp.series('copyHtml'));
+});
+
+// gulp4.0 方法二 回调函数法
+/*gulp.task("watch",()=>{
+	gulp.watch('src/*.html',async()=>{
+		gulp.src('src/*.html')
+		.pipe(gulp.dest('dist'));
+	})
+});*/
+
+// 9.webserver 实时监听页面内容的改变，保存即执行
 gulp.task("webserver",()=>{
-	return gulp.src("app")
-			   .pipe(webserver({
-			   		//key不可换
-			   		port:4000,//服务器端口号
-			   		livereload:true,//热更新
-			   		open:true
-			   }))
-
+	return gulp.src('app')
+				.pipe(webserver({
+					port:4000,
+					livereload:true,// 实时刷新，去掉f5刷新的痛点
+					open:true// 服务器启动时自动打开网页
+				}))
 });
-
-
-
-
-
 
 
 
