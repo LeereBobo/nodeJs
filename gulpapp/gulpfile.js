@@ -1,4 +1,5 @@
 // 这是基于gulp4.0的方法实例
+// 看package.json中gulp的版本，决定使用哪种方法
 
 const gulp = require('gulp');
 const minImage = require('gulp-imagemin');
