@@ -15,6 +15,7 @@ var one = new Vue({
 
 });
 
+// 实例化多个Vue对象时，可以在当前实例化对象里改变另一个实例化对象的内容；
 var two = new Vue({
   el:"#vue-app-two",
   data:{
@@ -35,6 +36,7 @@ var two = new Vue({
 
 });
 
+// 也可在外部更改实例化对象的内容
 two.title = "something...";
 
 
