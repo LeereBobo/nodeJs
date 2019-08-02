@@ -1,8 +1,15 @@
 # vue 
 ### 这是vue的课堂代码，包含项目
-### 一.vuesandbox
-#### 1.coding:Vue基础知识
+### 1.vuesandbox
+#### coding:Vue基础知识
 
-### 二.vue-empty  初识组件
+### 2.vue-empty  初识组件
+
+### 3.vuesandbox 
+#### vue-app   搭建脚手架Vue CLI2.0
+
+### 4.vuesandbox 
+#### VUECLI
+
 
 
